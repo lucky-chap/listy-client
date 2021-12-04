@@ -8,8 +8,8 @@ import {
 } from '../requests/ItemRequests';
 
 const initialState = {
-    items: [],
-    loadItems: null,
+    itemsList: [],
+    loadItemsList: null,
 };
 
 
@@ -18,15 +18,15 @@ const itemsSlice = createSlice({
     initialState,
     extraReducers: {
         [getItems.fulfilled]: (state, { payload }) => {
-            state.items = payload;
-            state.loadItems = 'success';
+            state.itemsList = payload;
+            state.loadItemsList = 'success';
         },
         [deleteItem.fulfilled]: (state, { payload }) => {
-            state.items.filter(item => item._id !== payload.id);
+            state.itemsList.filter(item => item._id !== payload.id);
         },
         [checkItem.fulfilled]: (state, { payload }) => {
-            state.items = (
-                state.items.map(item => {
+            state.itemsList = (
+                state.itemsList.map(item => {
                     if (item._id === payload.id) {
                         item.isChecked = !item.isChecked;
                     }
@@ -35,7 +35,7 @@ const itemsSlice = createSlice({
             );
         },
         [addItem.fulfilled]: (state, { payload }) => {
-            state.items = [{ title: payload.title, isChecked: false, _id: payload._id, content: payload.content }, ...state.items];
+            state.itemsList = [{ title: payload.title, isChecked: false, _id: payload._id, content: payload.content }, ...state.itemsList];
         },
     }
 });
