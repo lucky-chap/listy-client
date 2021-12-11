@@ -21,6 +21,7 @@ import { ColorModeSwitcher } from '../chakra/ColorModeSwitcher';
 import Register from './Register'
 import Login from './Login'
 import Logout from './Logout'
+import Add from './Add';
 
 const Navbar = () => {
 	const { isAuthenticated } = useSelector(state => state.auth)
@@ -56,11 +57,15 @@ const Navbar = () => {
 					</HStack>
 
 					{isAuthenticated ? (
-						<Logout />
+						<HStack>
+							<Add />
+							<Logout />
+						</HStack>
 					) : (
 						<HStack spacing={4} flexShrink='1'>
 							<Login />
 							<Register />
+							<Add />
 						</HStack>
 					)}
 				</Flex>
@@ -81,7 +86,10 @@ const Navbar = () => {
 					</Box>
 
 					{isAuthenticated ? (
-						<Logout size='sm' />
+						<HStack>
+							<Add />
+							<Logout />
+						</HStack>
 					) : (
 						<Menu>
 							<MenuButton
@@ -91,11 +99,13 @@ const Navbar = () => {
 								size='sm'
 							/>
 							<MenuList>
-								<Stack p={2}>
+								<Stack p={2} alignItems='center'>
 									<Login />
 
 									<Divider orientation='horizontal' mt={2} />
 									<Register variant='link' />
+									<Divider orientation='horizontal' mt={2} />
+									<Add />
 								</Stack>
 							</MenuList>
 						</Menu>
