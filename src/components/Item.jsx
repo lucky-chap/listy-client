@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Badge, IconButton, useToast } from '@chakra-ui/react';
+import { Box, Text, Badge, IconButton, useToast, Container } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon, CheckIcon } from '@chakra-ui/icons';
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -49,14 +49,21 @@ const Item = ({ item }) => {
 	return (
 		<Box
 			m={3}
-			maxW='sm'
 			minW='sm'
 			borderWidth='1px'
 			borderRadius='lg'
 			overflow='hidden'
+			minH='sm'
+			height='90%'
 		>
-			<Box
-				p='8'
+			<Container
+				p='4'
+				maxW='sm'
+				height='100%'
+				display='flex'
+				flexDirection='column'
+				justifyContent='space-between'
+				overflow='hidden'
 				borderBottomWidth={item.isChecked ? '5px' : null}
 				borderBottomColor={item.isChecked ? 'cyan' : null}
 			>
@@ -133,7 +140,7 @@ const Item = ({ item }) => {
 						/>
 					</Box>
 				</Box>
-			</Box>
+			</Container>
 		</Box>
 	)
 }

@@ -72,9 +72,9 @@ const ItemsList = () => {
 				</Flex>
 
 				{loadItemsList === 'success' ? (
-					<Flex flexDirection='row' flexWrap='wrap' justifyContent='center' w='100%' p={2}>
+					<Flex flexDirection='row' flexWrap='wrap' justifyContent='center' p={2}>
 						{itemsList.map((item, index) => (
-							<Fade in='true' key={index} minW='100%'>
+							<Fade in='true' key={index}>
 								<Item item={item} />
 							</Fade>
 						))}
