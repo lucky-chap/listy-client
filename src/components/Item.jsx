@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Badge, IconButton, useToast, Container } from '@chakra-ui/react';
+import { Box, Text, Badge, IconButton, useToast, Container, SimpleGrid } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon, CheckIcon } from '@chakra-ui/icons';
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,25 +47,34 @@ const Item = ({ item }) => {
 	}
 
 	return (
-		<Box
+		<SimpleGrid
 			m={3}
-			minW='sm'
+			display='flex'
 			borderWidth='1px'
 			borderRadius='lg'
+			height='100%'
 			overflow='hidden'
-			minH='sm'
-			height='90%'
+			columns={{ base: 1, md: 2, lg: 3 }}
+			maxW='lg'
+			px={{ base: 2.5, lg: 3, xl: 5 }}
+			py={5}
+			mx='.5rem'
+			shadow='xl'
+			borderBottomWidth={item.isChecked ? '5px' : null}
+			borderBottomColor={item.isChecked ? 'cyan' : null}
 		>
-			<Container
-				p='4'
+			<Box
+				wordBreak='break-word'
+				overflow='hidden'
+				w='100%'
+				span={3}
 				maxW='sm'
-				height='100%'
+				margin={0}
+				maxW='auto'
 				display='flex'
+				flexWrap='wrap'
 				flexDirection='column'
 				justifyContent='space-between'
-				overflow='hidden'
-				borderBottomWidth={item.isChecked ? '5px' : null}
-				borderBottomColor={item.isChecked ? 'cyan' : null}
 			>
 				<Box display='flex' alignItems='baseline'>
 					<Badge borderRadius='full' px='2' colorScheme='teal'>
@@ -73,7 +82,12 @@ const Item = ({ item }) => {
 					</Badge>
 				</Box>
 
-				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight'>
+				<Box
+					mt='1'
+					fontWeight='semibold'
+					as='h4'
+					lineHeight='tight'
+				>
 					<Text
 						as={item.isChecked ? 'del' : null}
 						opacity={item.isChecked ? '0.5' : null}
@@ -89,8 +103,14 @@ const Item = ({ item }) => {
 				</Box>
 
 				<Box>
-					<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight'>
+					<Box
+						mt='1'
+						fontWeight='semibold'
+						as='h4'
+						lineHeight='tight'
+					>
 						<Text
+							wordBreak='keep-all'
 							as={item.isChecked ? 'del' : null}
 							opacity={item.isChecked ? '0.5' : null}
 						>
@@ -140,8 +160,8 @@ const Item = ({ item }) => {
 						/>
 					</Box>
 				</Box>
-			</Container>
-		</Box>
+			</Box>
+		</SimpleGrid>
 	)
 }
 

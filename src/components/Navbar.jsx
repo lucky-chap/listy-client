@@ -77,7 +77,7 @@ const Navbar = () => {
 					justifyContent='space-between'
 					my={2}
 					mx='auto'
-					width={{ base: '90%', lg: '75%' }}
+					width={{ base: '100%', lg: '75%' }}
 				>
 					<ColorModeSwitcher size='sm' />
 
