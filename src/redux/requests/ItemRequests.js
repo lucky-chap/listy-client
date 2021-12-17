@@ -6,9 +6,9 @@ import { tokenConfig } from "./AuthRequests";
 // get all items
 export const getItems = createAsyncThunk(
     'items/getItems',
-    async (_, { rejectWithValue }) => {
+    async (_, { rejectWithValue, getState }) => {
         try {
-            const res = await axios.get('/api/items');
+            const res = await axios.get('/api/items', tokenConfig(getState));
             return res.data;
         } catch (err) {
             return rejectWithValue({

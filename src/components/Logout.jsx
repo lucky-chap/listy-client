@@ -6,13 +6,13 @@ import { useDispatch } from 'react-redux'
 
 import { logout } from '../redux/slices/AuthSlice'
 
-const SignOut = ({ variant = 'outline', size = 'md' }) => {
+const SignOut = ({ variant = 'outline', size = 'sm' }) => {
 	const dispatch = useDispatch()
 
 	const [didMount, setDidMount] = useState(false)
 
 	useEffect(() => {
-		setDidMount(true)
+		setDidMount(true);
 		return () => setDidMount(false)
 	}, [])
 

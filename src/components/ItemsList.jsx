@@ -71,8 +71,16 @@ const ItemsList = () => {
 					</Badge>
 				</Flex>
 
-				{loadItemsList === 'success' ? (
-					<Flex mx='auto' mb={7} flexDirection='row' flexWrap='wrap' justifyContent='center' p={2}>
+				{isAuthenticated && loadItemsList === 'success' ? (
+					<Flex
+						w='-webkit-fill-available'
+						mx='auto'
+						mb={7}
+						flexDirection='row'
+						flexWrap='wrap'
+						justifyContent='center'
+						p={2}
+					>
 						{itemsList.map((item, index) => (
 							<Box mt={8} maxW='sm' w='100%' in='true' key={index}>
 								<Item item={item} />
@@ -81,11 +89,10 @@ const ItemsList = () => {
 					</Flex>
 				) : (
 					<Box>
-                            <CircularProgress isIndeterminate color='green.500' />
-                            <Text>Ooops! No items here</Text>
+						<CircularProgress isIndeterminate color='green.500' />
+						<Text mt={8}>Ooops! No items here. Log in and try adding a few.</Text>
 					</Box>
 				)}
-
 			</Flex>
 		</Container>
 	)

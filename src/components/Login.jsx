@@ -58,7 +58,7 @@ const Login = ({ variant = 'link' }) => {
 
 	return (
 		<>
-			<Button colorScheme='primary' variant={variant} onClick={onOpen}>
+			<Button colorScheme='primary' variant={variant} size='sm' onClick={onOpen}>
 				Sign In
 			</Button>
 

@@ -4,7 +4,6 @@ import {
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
-	IconButton,
 	Input,
 	Modal,
 	ModalBody,
@@ -62,11 +61,10 @@ const Add = () => {
 				<Button
 					variant={'solid'}
 					colorScheme={'teal'}
-					mr={4}
-					leftIcon={<AddIcon />}
-					onClick={handleAdd}
+				onClick={handleAdd}
+				size='sm'
 				>
-					Add List
+					Add
 				</Button>
 
 				<Modal isOpen={isOpen} onClose={onClose}>

@@ -66,7 +66,7 @@ const Register = ({ variant = 'solid' }) => {
 
 	return (
 		<>
-			<Button colorScheme='primary' variant={variant} onClick={onOpen}>
+			<Button colorScheme='primary' variant={variant} size='sm' onClick={onOpen}>
 				Register
 			</Button>
 
