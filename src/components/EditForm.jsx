@@ -19,7 +19,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useForm } from 'react-hook-form'
-import { updateItem } from '../redux/requests/ItemRequests'
+import { getItems, updateItem } from '../redux/requests/ItemRequests'
 
 
 const EditForm = ({ children, item }) => {
@@ -57,6 +57,7 @@ const EditForm = ({ children, item }) => {
                 content: values.content,
             })
         );
+        dispatch(getItems())
         e.target.reset()
         onClose()
 	}
