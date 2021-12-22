@@ -38,6 +38,20 @@ export const addItem = createAsyncThunk(
 
 
 // TODO: update item request
+export const updateItem = createAsyncThunk(
+    'items/updateItem',
+    async ({ id, title, content }, { rejectWithValue, getState }) => {
+        try {
+            const res = await axios.patch(`/api/items/${id}`, { title, content }, tokenConfig(getState));
+            return res.data
+        } catch (err) {
+            return rejectWithValue({
+                data: err.response.data,
+                status: err.response.status,
+            });
+        }
+    }
+)
 
 
 // delete an item

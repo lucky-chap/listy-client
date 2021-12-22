@@ -42,7 +42,7 @@ const Add = () => {
 		onClose()
 	}
 
-	const handleAdd = () => {
+	const handleShowModal = () => {
 		if (isAuthenticated) {
 			onOpen()
 		} else {
@@ -61,7 +61,7 @@ const Add = () => {
 				<Button
 					variant={'solid'}
 					colorScheme={'teal'}
-				onClick={handleAdd}
+				onClick={handleShowModal}
 				size='sm'
 				>
 					Add
@@ -75,7 +75,7 @@ const Add = () => {
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<ModalBody pb={6}>
 								<FormControl isInvalid={errors.title}>
-									<FormLabel>Item</FormLabel>
+									<FormLabel>Title</FormLabel>
 									<Input
 										placeholder='Title'
 										name='title'
@@ -87,7 +87,7 @@ const Add = () => {
 									</FormErrorMessage>
 								</FormControl>
 
-								<FormControl isInvalid={errors.title} mb='1rem'>
+								<FormControl isInvalid={errors.title} mb='1rem' mt={2}>
 									<FormLabel>Content</FormLabel>
 									<Input
 										placeholder='Content'

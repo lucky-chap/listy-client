@@ -5,6 +5,7 @@ import {
     deleteItem,
     checkItem,
     addItem,
+    updateItem,
 } from '../requests/ItemRequests';
 
 const initialState = {
@@ -37,6 +38,9 @@ const itemsSlice = createSlice({
         [addItem.fulfilled]: (state, { payload }) => {
             state.itemsList = [{ title: payload.title, isChecked: false, _id: payload._id, content: payload.content }, ...state.itemsList];
         },
+        [updateItem.fulfilled]: (state, { payload }) => {
+            state.itemsList = [{ title: payload.title, isChecked: payload.isChecked, _id: payload._id, content: payload.content }, ...state.itemsList]
+        }
     }
 });
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Badge, IconButton, useToast, Container, SimpleGrid } from '@chakra-ui/react';
+import { Box, Text, Badge, IconButton, useToast, SimpleGrid, useDisclosure } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon, CheckIcon } from '@chakra-ui/icons';
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,12 +8,15 @@ import {
 	checkItem,
 	getItems
 } from '../redux/requests/ItemRequests'
+import EditForm from './EditForm';
 
 const Item = ({ item }) => {
     
     const toast = useToast()
 
 	const { isAuthenticated } = useSelector(state => state.auth)
+
+	const { isOpen, onOpen, onClose } = useDisclosure()
     
 	const dispatch = useDispatch()
 
@@ -36,6 +39,18 @@ const Item = ({ item }) => {
 		if (isAuthenticated) {
 			dispatch(checkItem(value))
 		} else {
+			toast({
+				title: 'Unauthorised access',
+				description: 'Please login to make any changes.',
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+			})
+		}
+	}
+
+	const handleEdit = item => {
+		if (!isAuthenticated) {
 			toast({
 				title: 'Unauthorised access',
 				description: 'Please login to make any changes.',
@@ -82,12 +97,7 @@ const Item = ({ item }) => {
 					</Badge>
 				</Box>
 
-				<Box
-					mt='1'
-					fontWeight='semibold'
-					as='h4'
-					lineHeight='tight'
-				>
+				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight'>
 					<Text
 						as={item.isChecked ? 'del' : null}
 						opacity={item.isChecked ? '0.5' : null}
@@ -103,12 +113,7 @@ const Item = ({ item }) => {
 				</Box>
 
 				<Box>
-					<Box
-						mt='1'
-						fontWeight='semibold'
-						as='h4'
-						lineHeight='tight'
-					>
+					<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight'>
 						<Text
 							wordBreak='keep-all'
 							as={item.isChecked ? 'del' : null}
@@ -138,14 +143,17 @@ const Item = ({ item }) => {
 					</Box>
 
 					<Box as='span' ml='2' color='gray.600' fontSize='sm'>
-						<IconButton
-							aria-label='Delete Item'
-							variant='outline'
-							size='sm'
-							colorScheme='success'
-							icon={<EditIcon />}
-							isRound
-						/>
+						<EditForm item={item}>
+							<IconButton
+								aria-label='Delete Item'
+								variant='outline'
+								size='sm'
+								colorScheme='success'
+								icon={<EditIcon />}
+								isRound
+								onClick={() => handleEdit(item)}
+							/>
+						</EditForm>
 					</Box>
 
 					<Box as='span' ml='2' color='gray.600' fontSize='sm'>
