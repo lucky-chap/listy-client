@@ -71,7 +71,7 @@ const ItemsList = () => {
 					</Badge>
 				</Flex>
 
-				{isAuthenticated && loadItemsList === 'success' ? (
+				{isAuthenticated || loadItemsList === 'success' ? (
 					<Flex
 						w='-webkit-fill-available'
 						mx='auto'
@@ -82,7 +82,11 @@ const ItemsList = () => {
 						p={2}
 					>
 						{itemsList.map((item, index) => (
-							<Box mt={8} maxW='sm' w='100%' in='true' key={index}>
+							// At first I used the index as the key. But anytime I added a new item, it took the index of the previous
+							// item before it in the array (hope you get me). This made updating an item difficult, as it's contents
+							// are replaced with the previous item's contents at that index. 
+							// Using their unique IDs as keys helped solve this bug 😊
+							<Box mt={8} maxW='sm' w='100%' in='true' key={item._id}>
 								<Item item={item} />
 							</Box>
 						))}
